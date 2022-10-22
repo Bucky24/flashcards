@@ -5,12 +5,21 @@ import styles from './styles.css';
 
 import dutchData from './data/dutch.json';
 
-const allAnswers = Object.keys(dutchData).reduce((answers, key) => {
+const allCategories = Object.keys(dutchData);
+const allAnswers = allCategories.reduce((answers, category) => {
+	const categoryData = dutchData[category];
 	return [
 		...answers,
-		dutchData[key],
-	]
+		...Object.keys(categoryData).reduce((answers, key) => {
+			return [
+				...answers,
+				categoryData[key],
+			]
+		}, []),
+	];
 }, []);
+
+console.log(allAnswers);
 
 export default function App() {
 	const [cards, setCards] = useState([]);
@@ -19,51 +28,56 @@ export default function App() {
 	const [guess, setGuess] = useState(null);
 	const [correct, setCorrect] = useState(0);
 	const [wrong, setWrong] = useState(0);
+	const [categories, setCategories] = useState(allCategories);
 
 	function reset() {
 		setWrong(0);
 		setCorrect(0);
 		setActiveCard(0);
 
-		const allCards = Object.keys(dutchData);
 		const newCards = [];
 
-		while (allCards.length > 0) {
-			// find a random questnio
-			const randomCardIndex = Math.floor(Math.random() * allCards.length);
-			const cardKey = allCards[randomCardIndex];
-			allCards.splice(randomCardIndex, 1);
-			const correctAnswer = dutchData[cardKey];
+		for (const category of allCategories) {
+			const cardData = dutchData[category];
+			const allCards = Object.keys(cardData);
 
-			const answers = [
-				correctAnswer,
-			];
+			while (allCards.length > 0) {
+				// find a random questnio
+				const randomCardIndex = Math.floor(Math.random() * allCards.length);
+				const cardKey = allCards[randomCardIndex];
+				allCards.splice(randomCardIndex, 1);
+				const correctAnswer = cardData[cardKey];
 
-			// build a list of 4 answers. 3 chosen at random
-			const newAnswers = [...allAnswers];
-			while (newAnswers.length > 0 && answers.length < 4) {
-				const randomAnswerIndex = Math.floor(Math.random() * newAnswers.length);
-				const answer = newAnswers[randomAnswerIndex];
-				newAnswers.splice(randomAnswerIndex, 1);
-				if (!answers.includes(answer)) {
-					answers.push(answer);
+				const answers = [
+					correctAnswer,
+				];
+
+				// build a list of 4 answers. 3 chosen at random
+				const newAnswers = [...allAnswers];
+				while (newAnswers.length > 0 && answers.length < 4) {
+					const randomAnswerIndex = Math.floor(Math.random() * newAnswers.length);
+					const answer = newAnswers[randomAnswerIndex];
+					newAnswers.splice(randomAnswerIndex, 1);
+					if (!answers.includes(answer)) {
+						answers.push(answer);
+					}
 				}
-			}
 
-			// now shuffle the answers we found
-			const shuffledAnswers = [];
-			while (answers.length > 0) {
-				const randomAnswerIndex = Math.floor(Math.random() * answers.length);
-				const answer = answers[randomAnswerIndex];
-				answers.splice(randomAnswerIndex, 1);
-				shuffledAnswers.push(answer);
-			}
+				// now shuffle the answers we found
+				const shuffledAnswers = [];
+				while (answers.length > 0) {
+					const randomAnswerIndex = Math.floor(Math.random() * answers.length);
+					const answer = answers[randomAnswerIndex];
+					answers.splice(randomAnswerIndex, 1);
+					shuffledAnswers.push(answer);
+				}
 
-			newCards.push({
-				question: cardKey,
-				answers: shuffledAnswers,
-				correctAnswer,
-			});
+				newCards.push({
+					question: cardKey,
+					answers: shuffledAnswers,
+					correctAnswer,
+				});
+			}
 		}
 
 		setCards(newCards);
@@ -81,19 +95,20 @@ export default function App() {
 				<span>Wrong: {wrong}/{cards.length}</span>
 			</div>
 		</header>
-		<div class={styles.message}>{message}</div>
-		{!done && <section class={styles.cardHolder}>
-			<div class={styles.card}>
+		<div className={styles.message}>{message}</div>
+		{!done && <section className={styles.cardHolder}>
+			<div className={styles.card}>
 				<h2>
 					{currentCard.question}
 				</h2>
-				<div class={styles.buttonHolder}>
-					{currentCard.answers.map((answer) => {
+				<div className={styles.buttonHolder}>
+					{currentCard.answers.map((answer, index) => {
 						const correctAnswer = currentCard.correctAnswer === answer;
 						const guessed = guess === answer;
 						return (
 							<button
-								class={classNames(
+								key={`answer_${index}`}
+								className={classNames(
 									styles.button,
 									correctAnswer && guessed && styles.correct,
 									!correctAnswer && guessed && styles.wrong,

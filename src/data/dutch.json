@@ -1,6 +1,22 @@
 {
-    "antwoord": "answer",
-    "vogel": "bird",
-    "ontbijt": "breakfast",
-    "vrouw": "woman"
+    "basic1": {
+        "vrouw": "woman"
+    },
+    "animals": {
+        "vogel": "bird"
+    },
+    "food": {
+        "ontbijt": "breakfast"
+    },
+    "questions1": {
+        "antwoord": "answer"
+    },
+    "negation2": {
+        "niemand": "nobody",
+        "nergens": "nowhere",
+        "nog niet": "not yet",
+        "niks": "nothing",
+        "niet eens": "not even",
+        "niets meer": "nothing anymore"
+    }
 }
