@@ -18,5 +18,15 @@
         "niks": "nothing (inf)",
         "niet eens": "not even",
         "niets": "nothing"
+    },
+    "senses": {
+        "stemmen": "voices",
+        "oor": "ear",
+        "luisteren": "listen",
+        "muziek": "music",
+        "lawaai": "noise",
+        "klinken": "sound (verb)",
+        "stem": "voice",
+        "geluid": "sound (noun)"
     }
 }
