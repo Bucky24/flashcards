@@ -11,6 +11,16 @@
     "questions1": {
         "antwoord": "answer"
     },
+    "places": {
+        "de gevangaenis": "prison",
+        "thuis": "home",
+        "de stad": "city",
+        "steden": "cities",
+        "het plein": "square",
+        "het centrum": "center",
+        "gebouw": "building",
+        "strand": "beach"
+    },
     "negation2": {
         "niemand": "nobody",
         "nergens": "nowhere",
@@ -20,13 +30,17 @@
         "niets": "nothing"
     },
     "senses": {
-        "stemmen": "voices",
         "oor": "ear",
         "luisteren": "listen",
         "muziek": "music",
         "lawaai": "noise",
         "klinken": "sound (verb)",
         "stem": "voice",
-        "geluid": "sound (noun)"
+        "geluid": "sound (noun)",
+        "vies": "gross",
+        "smaak": "taste",
+        "lijk op": "look like",
+        "kijken": "look at",
+        "het uitzicht": "view"
     }
 }
