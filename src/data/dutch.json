@@ -21,6 +21,14 @@
         "gebouw": "building",
         "strand": "beach"
     },
+    "adverbs1": {
+        "bijna": "almost",
+        "zelf": "myself",
+        "straks": "soon",
+        "weg": "away/gones",
+        "al": "already/yet",
+        "allemaal": "all"
+    },
     "negation2": {
         "niemand": "nobody",
         "nergens": "nowhere",
@@ -42,5 +50,11 @@
         "lijk op": "look like",
         "kijken": "look at",
         "het uitzicht": "view"
+    },
+    "er": {
+        "feest": "party",
+        "weer": "weather",
+        "geld": "money",
+        "probleem": "problem"
     }
 }
