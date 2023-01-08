@@ -46,10 +46,51 @@
         "welterusten": "good night"
     },
     "animals": {
-        "vogel": "bird"
+        "de vogel": "bird",
+        "de hond": "dog",
+        "de muis": "mouse",
+        "het konijn": "rabbit",
+        "het varken": "pig",
+        "de staart": "tail",
+        "de neushoorn": "rhino",
+        "de spin": "spider",
+        "het dier": "animal",
+        "de koe": "cow",
+        "de krab": "crab",
+        "de beer": "bear",
+        "de hoorn": "horn",
+        "de mens": "human",
+        "de olifant": "elephant",
+        "het paard": "horse",
+        "de eend": "duck",
+        "de gans": "goose",
+        "het schaap": "sheep",
+        "de schildpad": "turtle",
+        "de kat": "cat"
     },
     "food": {
-        "ontbijt": "breakfast"
+        "het ontbijt": "breakfast",
+        "de koffie": "coffee",
+        "de groente": "vegetables",
+        "de soep": "soup",
+        "lekker": "tasty",
+        "honger": "hungry",
+        "de kaas": "cheese",
+        "de kip": "chicken",
+        "het ei": "egg",
+        "de thee": "tea",
+        "de bord": "plate",
+        "de aardbei": "strawberry",
+        "de suiker": "sugar",
+        "het fruit": "fruit",
+        "het maaltijd": "meal",
+        "de glas": "glass (cup)",
+        "de wijn": "wine",
+        "dorst": "thirst",
+        "de vis": "fish",
+        "de tomaat": "tomato",
+        "het vlees": "meat",
+        "de pasta": "pasta"
     },
     "questions1": {
         "antwoord": "answer"
