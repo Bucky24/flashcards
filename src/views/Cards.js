@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import classNames from 'classnames';
 
 import styles from '../styles.css';
 
 import dutchData from '../data/dutch.json';
 import GearImg from '../../assets/gear.png';
+import SettingsContext from '../contexts/SettingsContext';
 
 const allCategories = Object.keys(dutchData);
 const allAnswers = allCategories.reduce((answers, category) => {
@@ -29,6 +30,7 @@ export default function Cards({ setShowSettings }) {
 	const [cards, setCards] = useState([]);
 	const [activeCard, setActiveCard] = useState(0);
 	const [categories, setCategories] = useState(allCategories);
+	const { settings, initialized } = useContext(SettingsContext);
 
     function reset() {
 		setWrong(0);
@@ -88,7 +90,17 @@ export default function Cards({ setShowSettings }) {
 
 	useEffect(() => {
 		reset();
-	}, []);
+	}, [categories]);
+
+	useEffect(() => {
+		if (initialized) {
+			const hidden = settings.hiddenCategories;
+			const categories = allCategories.filter((category) => {
+				return !hidden.includes(category);
+			});
+			setCategories(categories);
+		}
+	}, [initialized]);
 
     const done = activeCard >= cards.length;
 	const currentCard = done ? null : cards[activeCard];

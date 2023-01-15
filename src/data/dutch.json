@@ -104,6 +104,34 @@
         "de neushoorn": "rhinoceros",
         "de spin": "spider"
     },
+    "pronouns": {
+        "zij": "they/she",
+        "jij": "you",
+        "wij": "we",
+        "hij": "he"
+    },
+    "comparisons": {
+        "maar": "but",
+        "ik niet": "I do not/I am not",
+        "ik wel": "I do/I am",
+        "ik ook": "I do as well",
+        "ook": "also/too"
+    },
+    "clothes": {
+        "de jas": "jacket/coat",
+        "de tas": "bag",
+        "de trui": "sweater",
+        "de klomp": "clog",
+        "de rok": "skirt",
+        "het hemd": "shirt",
+        "de kleren": "clothes",
+        "dragen": "to wear",
+        "de hoed": "hat",
+        "het pak": "suit",
+        "de schoen": "shoe",
+        "de broek": "pants",
+        "de jurk": "dress"
+    },
     "questions1": {
         "antwoord": "answer"
     },
