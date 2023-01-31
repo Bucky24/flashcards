@@ -130,7 +130,41 @@
         "het pak": "suit",
         "de schoen": "shoe",
         "de broek": "pants",
-        "de jurk": "dress"
+        "de jurk": "dress",
+        "het ondergoed": "underwear"
+    },
+    "present tense": {
+        "zwemmen": "to swim",
+        "lopen": "to walk",
+        "spelen": "to play",
+        "kennen": "to know",
+        "zien": "to see",
+        "geven": "to give",
+        "slapen": "to sleep",
+        "horen": "to hear",
+        "willen": "to want",
+        "gaan": "to go",
+        "koken": "to cook",
+        "schrijven": "to write",
+        "makken": "to make",
+        "komen": "to come"
+    },
+    "descriptions": {
+        "warm": "warm",
+        "koud": "cold",
+        "groot": "big/large",
+        "rustig": "calm/quiet",
+        "slecht": "bad",
+        "sterk": "strong",
+        "zwaar": "heavy",
+        "klein": "small",
+        "langzaam": "slow",
+        "snel": "fast",
+        "schoon": "clean",
+        "net zoals": "just like",
+        "zwak": "weak",
+        "makkelijk": "easy",
+        "vol": "full"
     },
     "questions1": {
         "antwoord": "answer"
