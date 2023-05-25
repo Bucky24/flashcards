@@ -1,5 +1,5 @@
 {
-    "basic1": {
+    "unit 1-1": {
         "de vrouw": "woman",
         "het water": "water",
         "het kind": "child",
@@ -23,7 +23,13 @@
         "we": "we",
         "het menu": "menu",
         "de rijst": "rice",
-        "het boek": "book"
+        "het boek": "book",
+        "ze": "she",
+        "is": "is",
+        "het": "the",
+        "eet": "to eat",
+        "ben": "to be",
+        "bent": "to be"
     },
     "basic2": {
         "pardon": "excuse me",
