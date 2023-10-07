@@ -1,0 +1,20 @@
+.footer_outer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.footer_inner {
+    max-width: 400px;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.footer_image {
+    width: 64px;
+}

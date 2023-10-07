@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useNavigate, use } from 'react-router-dom';
 
 import styles from '../styles.css';
 
@@ -8,6 +9,7 @@ import dutchData from '../data/dutch.json';
 
 export default function Settings({ setShowSettings }) {
 	const { settings, initialized, setSetting } = useContext(SettingsContext);
+	const navigate = useNavigate();
 
     return (
         <>
@@ -36,25 +38,6 @@ export default function Settings({ setShowSettings }) {
 					</div>
 				</>}
             </div>
-            <div
-				style={{
-					position: 'fixed',
-					bottom: 0,
-					right: 0,
-					padding: 10,
-					cursor: 'pointer',
-				}}
-				onClick={() => {
-					setShowSettings(false);
-				}}
-			>
-				<img
-					src={Flashcards}
-					style={{
-						width: 64,
-					}}
-				/>
-			</div>
         </>
     );
 }

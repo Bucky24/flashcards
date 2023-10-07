@@ -73,3 +73,33 @@ body > div {
 	flex-grow: 1;
 	padding: 0 10px;
 }
+
+.list_outer {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	max-width: 400px;
+	margin-bottom: 20px;
+}
+
+.list_item {
+	border: 3px solid black;
+	border-radius: 20px;
+	padding: 10px;
+	width: 40%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+.list_item.selected {
+	background-color: #0a0;
+}
+
+.list_item.done {
+	border-color: #aaa;
+	color: #aaa;
+	background-color: #444;
+	cursor: unset;
+}
