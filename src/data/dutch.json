@@ -260,5 +260,32 @@
         "weer": "weather",
         "geld": "money",
         "probleem": "problem"
+    },
+    "unit 15": {
+        "klienkind": "grandchild",
+        "stiefmoder": "stepmother",
+        "oom": "uncle",
+        "grootouder": "grandparents",
+        "neef": "cousin (male)",
+        "kleinzoon": "grandson",
+        "stamboom": "family tree",
+        "generatie": "generation",
+        "bruiloft": "wedding",
+        "opa": "grandpa",
+        "nicht": "cousin (female)",
+        "schoonouders": "in-laws",
+        "het huwelijk": "marriage",
+        "grootmoeder": "grandmother",
+        "oma": "grandma",
+        "ex": "ex partner",
+        "ma": "mom",
+        "pa": "dad",
+        "echtgenoot": "husband",
+        "getrouwd": "married",
+        "kleindochter": "granddaughter",
+        "halfbroer": "half-brother",
+        "halfzus": "half-sister",
+        "gisteren": "yesterday",
+        "echtgenote": "wife"
     }
 }
