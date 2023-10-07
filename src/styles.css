@@ -99,7 +99,7 @@ body > div {
 
 .list_item.done {
 	border-color: #aaa;
-	color: #aaa;
+	color: #fff;
 	background-color: #999;
 	cursor: unset;
 }

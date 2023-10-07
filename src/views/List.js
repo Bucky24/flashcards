@@ -21,7 +21,8 @@ export default function List() {
     const [selectedAnswer, setSelectedAnswer] = useState(null);
 
     useEffect(() => {
-        const undone = queue.filter((item) => !item.done).length;
+        const undone = queue.filter((item) => item.question && !item.done).length;
+        console.log(undone, queue);
         // only refill if all items are done
         if (undone === 0 && cards.length > 0) {
             const todo = MAX_QUEUE - undone;
@@ -30,8 +31,10 @@ export default function List() {
             const newAnswers = [];
             for (let i=0;i<todo;i++) {
                 const card = popCard();
-                newCards.push(card);
-                newAnswers.push(card);
+                if (card) {
+                    newCards.push(card);
+                    newAnswers.push(card);
+                }
             }
 
             // sort the new answers randomly
@@ -128,7 +131,7 @@ export default function List() {
             {queue.map(({ question, done }, index) => {
                 const { correctAnswer, done: answerDone } = answerQueue[index];
                 return <div className={styles.list_outer}>
-                    <div
+                    {question && <div
                         className={classNames(
                             styles.list_item,
                             selectedQuestion === index && styles.selected,
@@ -138,8 +141,8 @@ export default function List() {
                             if (done) return;
                             setSelectedQuestion(index);
                         }}
-                    >{question}</div>
-                    <div
+                    >{question}</div>}
+                    {correctAnswer && <div
                         className={classNames(
                             styles.list_item,
                             selectedAnswer === index && styles.selected,
@@ -149,7 +152,7 @@ export default function List() {
                             if (answerDone) return;
                             setSelectedAnswer(index);
                         }}
-                    >{correctAnswer}</div>
+                    >{correctAnswer}</div>}
                 </div>
             })}
         </section>
