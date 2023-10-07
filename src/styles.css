@@ -85,7 +85,7 @@ body > div {
 .list_item {
 	border: 3px solid black;
 	border-radius: 20px;
-	padding: 20px;
+	padding: 20px 0;
 	width: 40%;
 	display: flex;
 	align-items: center;
