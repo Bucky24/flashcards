@@ -100,6 +100,6 @@ body > div {
 .list_item.done {
 	border-color: #aaa;
 	color: #aaa;
-	background-color: #444;
+	background-color: #999;
 	cursor: unset;
 }
