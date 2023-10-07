@@ -22,8 +22,8 @@ export default function List() {
 
     useEffect(() => {
         const undone = queue.filter((item) => !item.done).length;
-        // only refill if there are more than 2 items done
-        if (undone < MAX_QUEUE-2 && cards.length > 0) {
+        // only refill if all items are done
+        if (undone === 0 && cards.length > 0) {
             const todo = MAX_QUEUE - undone;
             // pop all the cards
             const newCards = [];
