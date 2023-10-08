@@ -3,12 +3,9 @@ import classNames from 'classnames';
 
 import styles from '../styles.css';
 import useCards from '../utils/useCards';
+import shuffle from '../utils/shuffle';
 
 const MAX_QUEUE = 5;
-
-function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
-}  
 
 export default function List() {
     const [message, setMessage] = useState("");
@@ -19,10 +16,10 @@ export default function List() {
     const { cards, popCard } = useCards();
     const [selectedQuestion, setSelectedQuestion] = useState(null);
     const [selectedAnswer, setSelectedAnswer] = useState(null);
+    const [streak, setStreak] = useState(0);
 
     useEffect(() => {
         const undone = queue.filter((item) => item.question && !item.done).length;
-        console.log(undone, queue);
         // only refill if all items are done
         if (undone === 0 && cards.length > 0) {
             const todo = MAX_QUEUE - undone;
@@ -38,27 +35,20 @@ export default function List() {
             }
 
             // sort the new answers randomly
-            const shuffledNewAnswers = [];
-            while (newAnswers.length > 0) {
-                const randomIndex = getRandomInt(newAnswers.length);
-                shuffledNewAnswers.push(newAnswers.splice(randomIndex, 1)[0]);
-            }
+            const shuffledNewAnswers = shuffle(newAnswers);
 
             // find all positions that are done or unfilled
             const newQueue = [...queue];
             for (let i=0;i<MAX_QUEUE;i++) {
+                const card = newCards.pop();
+                const newObj = {
+                    done: false,
+                    ...card,
+                };
                 if (i > newQueue.length-1) {
-                    const card = newCards.pop();
-                    newQueue.push({
-                        done: false,
-                        ...card,
-                    });
+                    newQueue.push(newObj);
                 } else if (newQueue[i].done) {
-                    const card = newCards.pop();
-                    newQueue[i] = {
-                        done: false,
-                        ...card,
-                    };
+                    newQueue[i] = newObj;
                 }
             }
             setQueue(newQueue);
@@ -66,18 +56,15 @@ export default function List() {
             // now the same for the answers
             const newAnswersQueue = [...answerQueue];
             for (let i=0;i<MAX_QUEUE;i++) {
+                const card = shuffledNewAnswers.pop();
+                const newObj = {
+                    done: false,
+                    ...card,
+                };
                 if (i > newAnswersQueue.length-1) {
-                    const card = shuffledNewAnswers.pop();
-                    newAnswersQueue.push({
-                        done: false,
-                        ...card,
-                    });
+                    newAnswersQueue.push(newObj);
                 } else if (newAnswersQueue[i].done) {
-                    const card = shuffledNewAnswers.pop();
-                    newAnswersQueue[i] = {
-                        done: false,
-                        ...card,
-                    };
+                    newAnswersQueue[i] = newObj;
                 }
             }
 
@@ -93,6 +80,7 @@ export default function List() {
             const answer = answerQueue[selectedAnswer];
             if (question.correctAnswer === answer.correctAnswer) {
                 setCorrect((correct) => correct + 1);
+                setStreak((streak) => streak + 1);
                 setQueue(queue.map((item, index) => {
                     if (index === selectedQuestion) {
                         return {
@@ -115,6 +103,7 @@ export default function List() {
                 }));
             } else {
                 setWrong((wrong) => wrong + 1);
+                setStreak(0);
             }
         }
     }, [selectedAnswer, selectedQuestion]);
@@ -123,6 +112,7 @@ export default function List() {
         <header className={styles.header}>
             <div className={styles.headerInner}>
                 <span>Correct: {correct}</span>
+                <span>Streak: {streak}</span>
                 <span>Wrong: {wrong}</span>
             </div>
         </header>
@@ -130,7 +120,7 @@ export default function List() {
         <section className={styles.cardHolder}>
             {queue.map(({ question, done }, index) => {
                 const { correctAnswer, done: answerDone } = answerQueue[index];
-                return <div className={styles.list_outer}>
+                return <div className={styles.list_outer} key={`item_${index}`}>
                     {question && <div
                         className={classNames(
                             styles.list_item,

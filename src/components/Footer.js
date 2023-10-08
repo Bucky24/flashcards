@@ -28,11 +28,11 @@ export default function Footer() {
 
     return <div className={styles.footer_outer}>
         <div className={styles.footer_inner}>
-            {paths.map(({ path, image }) => {
+            {paths.map(({ path, image }, index) => {
                 if (path === pathname) {
                     return;
                 }
-                return <Link to={path}>
+                return <Link key={`link_${index}`} to={path}>
                     <img className={styles.footer_image} src={image} />
                 </Link>
             })}
