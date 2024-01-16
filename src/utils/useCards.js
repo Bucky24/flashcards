@@ -2,26 +2,45 @@ import { useContext, useEffect, useState } from "react";
 
 import SettingsContext from "../contexts/SettingsContext";
 import dutchData from '../data/dutch.json';
-
-const allCategories = Object.keys(dutchData);
-const allAnswers = allCategories.reduce((answers, category) => {
-	const categoryData = dutchData[category];
-
-	return [
-		...answers,
-		...Object.keys(categoryData).reduce((answers, key) => {
-			return [
-				...answers,
-				categoryData[key],
-			]
-		}, []),
-	];
-}, []);
+import DataContext from "../contexts/DataContext";
 
 export default function useCards() {
     const [cards, setCards] = useState([]);
 	const { settings, initialized } = useContext(SettingsContext);
-	const [categories, setCategories] = useState(allCategories);
+	const [allCategories, setAllCategories] = useState([]);
+	const [categories, setCategories] = useState([]);
+	const [allAnswers, setAnswers] = useState([]);
+    const { data } = useContext(DataContext);
+
+    useEffect(() => {
+		if (initialized) {
+			const hidden = settings.hiddenCategories;
+			const categories = allCategories.filter((category) => {
+				return !hidden.includes(category);
+			});
+			setCategories(categories);
+		}
+	}, [initialized, allCategories]);
+
+    useEffect(() => {
+        const allCategories = Object.keys(data);
+        const allAnswers = allCategories.reduce((answers, category) => {
+            const categoryData = dutchData[category];
+
+            return [
+                ...answers,
+                ...Object.keys(categoryData).reduce((answers, key) => {
+                    return [
+                        ...answers,
+                        categoryData[key],
+                    ]
+                }, []),
+            ];
+        }, []);
+
+        setAllCategories(allCategories);
+        setAnswers(allAnswers)
+    }, [data]);
 
     const shuffle = () => {
         const allCards = {};
@@ -76,16 +95,6 @@ export default function useCards() {
     }
 
     useEffect(shuffle, [categories]);
-
-    useEffect(() => {
-		if (initialized) {
-			const hidden = settings.hiddenCategories;
-			const categories = allCategories.filter((category) => {
-				return !hidden.includes(category);
-			});
-			setCategories(categories);
-		}
-	}, [initialized]);
 
     return {
         cards,

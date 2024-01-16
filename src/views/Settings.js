@@ -3,13 +3,12 @@ import { useNavigate, use } from 'react-router-dom';
 
 import styles from '../styles.css';
 
-import Flashcards from '../../assets/flashcards.png';
 import SettingsContext from '../contexts/SettingsContext';
-import dutchData from '../data/dutch.json';
+import DataContext from '../contexts/DataContext';
 
-export default function Settings({ setShowSettings }) {
+export default function Settings() {
 	const { settings, initialized, setSetting } = useContext(SettingsContext);
-	const navigate = useNavigate();
+	const { data } = useContext(DataContext);
 
     return (
         <>
@@ -18,10 +17,10 @@ export default function Settings({ setShowSettings }) {
 				{initialized && <>
 					<div>
 						<span>Categories</span>
-						{Object.keys(dutchData).map((key) => {
+						{Object.keys(data).map((key) => {
 							const disabled = settings.hiddenCategories.includes(key);
 							return (
-								<div style={{cursor: 'pointer'}} onClick={() => {
+								<div key={key} style={{cursor: 'pointer'}} onClick={() => {
 									const newCategories = [...settings.hiddenCategories];
 									if (newCategories.includes(key)) {
 										const index = newCategories.indexOf(key);

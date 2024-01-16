@@ -9,7 +9,7 @@ import list from '../../assets/list.png';
 
 const paths = [
     {
-        path: '/',
+        path: '/cards',
         image: flashcards,
     },
     {
